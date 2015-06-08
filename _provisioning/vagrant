@@ -18,6 +18,9 @@ server {
 	location / {
 		root /vagrant/public;
 		try_files $uri $uri/ @proxy;
+
+		error_page 403 @proxy;
+		error_page 404 @proxy;
 	}
 
 	access_log /var/log/nginx/vagrant.com-access.log;
