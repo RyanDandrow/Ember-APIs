@@ -1,0 +1,19 @@
+{
+  "name": "ember-apis",
+  "version": "0.0.0",
+  "homepage": "https://github.com/RyanDandrow/Ember-APIs",
+  "authors": [
+    "Ryan Dandrow <RyanDandrow@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "sb-admin-2": "*"
+  }
+}

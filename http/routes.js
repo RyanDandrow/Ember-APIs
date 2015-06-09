@@ -4,7 +4,7 @@ var express = require('express'),
 	homeResource = require('./resources/home'),
 	userResource = require('./resources/users'),
 
-router.use('./', homeResource);
-router.use('./users', userResource);
+router.use('/', homeResource);
+router.use('/users', userResource);
 
 module.exports = router;
