@@ -7,6 +7,8 @@ var routes = require('./http/routes');
 var app = express();
 require('./bootstrap/middleware')(app);
 require('./bootstrap/views')(app);
+require('./bootstrap/mongo');
+require('./models');
 
 app.use('/', routes);
 
