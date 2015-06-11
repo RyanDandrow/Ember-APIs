@@ -1,0 +1,19 @@
+extends /layouts/admin
+
+block content
+	.responsive-table
+		table.table.table-bordered.table-hover.table-striped
+			thead
+				tr
+					th Id
+					th Title
+					th Short
+					th Publish Date
+					th
+			tbody
+				each newsArticle in newsArticles
+					td #{newsArticle.id}
+					td #{newsArticle.title}
+					td #{newsArticle.short}
+					td #{newsArticle.publishDateFormatted}
+					td

@@ -1,0 +1,15 @@
+extends /layouts/admin
+
+block content
+	p 
+		strong Id
+		| -	#{newsArticle.id}
+	p 
+		strong Title
+		| -	#{newsArticle.title}
+	p 
+		strong Short
+		| -	#{newsArticle.short}
+	p 
+		strong Publish Date
+		| -	#{newsArticle.publishDateFormatted}
