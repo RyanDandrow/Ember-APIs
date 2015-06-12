@@ -1,7 +1,7 @@
 extends /layouts/admin
 
 block content
-	form.col-lg-12(action="/news-articles/#{newsArticle.id}" method="POST")
+	form.col-lg-12(action=urlHelper.update() method="POST")
 		input(type="hidden" name="_method" value="put")
 		include _form
 		
