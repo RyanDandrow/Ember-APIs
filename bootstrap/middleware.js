@@ -4,6 +4,7 @@ var bodyParser = require('body-parser');
 var override = require('method-override');
 var session = require('express-session');
 var flash = require('express-flash');
+var flashError = require('../middleware/flash-error');
 
 module.exports = function (app) {
 	app.use(logger('dev'));
@@ -24,4 +25,5 @@ module.exports = function (app) {
 		saveUninitialized: true
 	}));
 	app.use(flash());
+	app.use(flashError());
 };

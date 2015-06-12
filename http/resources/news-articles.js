@@ -13,6 +13,13 @@ var prepareData = function(title, data) {
 	return data;
 }
 
+var invalidResponse = function (req, res) {
+	return function (err) {
+		req.flash('danger', 'No news article exists with that id "' + req.params.id + '"');
+		res.redirect(urlHelper.index());
+	};
+};
+
 /* GET all news articles in a table */
 router.get('/', function (req, res) {
 	NewsArticle.find().exec()
@@ -40,7 +47,11 @@ router.post('/', function (req, res) {
 		.then(function(newsArticle) {
 			req.flash('success', '"' + newsArticle.title + '" has been created');			
 			res.redirect('/news-articles');
-		})
+		}, function (err) {
+			req.flash('errors', err.errors);
+			req.flash('danger', 'There was an error saving this News Article');
+			res.redirect(req.header('Referer') || '/');
+		});
 });
 
 /* GET a detailed view of a news article. */
@@ -52,7 +63,7 @@ router.get('/:id', function (req, res) {
 			});
 
 			res.render('news-articles/show', data);
-		});
+		}, invalidResponse(req, res));
 });
 
 /* GET edit form for a news article. */
@@ -64,7 +75,7 @@ router.get('/:id/edit', function (req, res) {
 			});
 
 			res.render('news-articles/edit', data);
-		});
+		}, invalidResponse(req, res));
 });
 
 /* PUT save updates to a news article. */
@@ -73,6 +84,10 @@ router.put('/:id', function (req, res) {
 		.then(function(newsArticle) {
 			req.flash('success', '"' + newsArticle.title + '" has been updated');
 			res.redirect(urlHelper.index());
+		}, function (err) {
+			req.flash('errors', err.errors);
+			req.flash('danger', 'There was an error saving this News Article');
+			res.redirect(req.header('Referer') || '/');
 		});
 });
 
@@ -82,7 +97,7 @@ router.delete('/:id', function (req, res) {
 		.then(function(newsArticle) {
 			req.flash('success', '"' + newsArticle.title + '" has been deleted');
 			res.redirect(urlHelper.index());
-		});
+		}, invalidResponse(req, res));
 });
 
 module.exports = router;

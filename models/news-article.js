@@ -2,8 +2,8 @@ var mongoose = require('mongoose');
 	moment = require('moment');
 
 	var NewsArticleSchema = mongoose.Schema({
-		title: String,
-		body: String,
+		title: {type: String, required: true},
+		body: {type: String, required: true},
 		publishDate: {type: Date, default: Date.now}
 	});
 

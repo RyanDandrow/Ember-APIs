@@ -1,15 +1,18 @@
-.form-group
-	label(for="title") Title
+.form-group(class=errors.title && "has-error")
+	label.control-label(for="title") Title
 	input#title.form-control(name='title' value=newsArticle.title)
-	p.help-block Example clock-level help test here.
+	if errors.title
+		p.help-block The title field is required.
 
-.form-group
-	label(for="body") Body
+.form-group(class=errors.body && "has-error")
+	label.control-label(for="body") Body
 	textarea#body.form-control(name='body')
 		| #{newsArticle.body}
-	p.help-block Example clock-level help test here.
+	if errors.body
+		p.help-block The body field is required.
 
-.form-group
-	label(for="publish-date") Publish Date
+.form-group(class=errors.publishDate && "has-error")
+	label.control-label(for="publish-date") Publish Date
 	input#publish-date.form-control(name='publishDate' type="date" value=newsArticle.publishDateForm)
-	p.help-block Example clock-level help test here.
+	if errors.publishDate
+		p.help-block The publish date must be a valid date.
