@@ -1,6 +1,9 @@
 extends /layouts/admin
 
 block content
+	a.btn.btn-primary.pull-right(href="/news-articles/new")
+		i.fa.fa-plus
+			| New News Article
 	.responsive-table
 		table.table.table-bordered.table-hover.table-striped
 			thead
@@ -12,8 +15,13 @@ block content
 					th
 			tbody
 				each newsArticle in newsArticles
-					td #{newsArticle.id}
-					td #{newsArticle.title}
-					td #{newsArticle.short}
-					td #{newsArticle.publishDateFormatted}
-					td
+					tr
+						td 
+							a(href='/news-articles/#{newsArticle.id}')
+								| #{newsArticle.title}
+						td #{newsArticle.title}
+						td #{newsArticle.short}
+						td #{newsArticle.publishDateFormatted}
+						td
+							a(href='/news-articles/#{newsArticle.id}/edit')
+								i.fa.fa-edit

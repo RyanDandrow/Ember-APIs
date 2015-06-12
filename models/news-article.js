@@ -15,4 +15,8 @@ var mongoose = require('mongoose');
 		return moment(this.publishDate).format('L');
 	});
 
+	NewsArticleSchema.virtual('publishDateForm').get(function() {
+		return moment(this.publishDate).format('YYYY-MM-DD');
+	});
+
 	module.exports = mongoose.model('NewsArticle', NewsArticleSchema);
