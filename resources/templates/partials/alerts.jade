@@ -1,0 +1,6 @@
+each type in ['success', 'info', 'warning', 'danger']
+	if messages[type]
+		.alert.alert-dismissable(class="alert-#{type}" role="alert")
+			button.close(type="button" data-dismiss="alert" aria-label="Close")
+				span(aira-hidden="true") &times;
+			strong #{messages[type]}

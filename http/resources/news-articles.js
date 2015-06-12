@@ -37,7 +37,8 @@ router.get('/new', function (req, res) {
 /* POST create news article from form data. */
 router.post('/', function (req, res) {
 	NewsArticle.create(req.body)
-		.then(function() {
+		.then(function(newsArticle) {
+			req.flash('success', '"' + newsArticle.title + '" has been created');			
 			res.redirect('/news-articles');
 		})
 });
@@ -70,6 +71,7 @@ router.get('/:id/edit', function (req, res) {
 router.put('/:id', function (req, res) {
 	NewsArticle.findByIdAndUpdate(req.params.id, req.body).exec()
 		.then(function(newsArticle) {
+			req.flash('success', '"' + newsArticle.title + '" has been updated');
 			res.redirect(urlHelper.index());
 		});
 });
@@ -78,6 +80,7 @@ router.put('/:id', function (req, res) {
 router.delete('/:id', function (req, res) {
 	NewsArticle.findByIdAndRemove(req.params.id).exec()
 		.then(function(newsArticle) {
+			req.flash('success', '"' + newsArticle.title + '" has been deleted');
 			res.redirect(urlHelper.index());
 		});
 });

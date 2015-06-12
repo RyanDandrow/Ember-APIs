@@ -2,6 +2,8 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var override = require('method-override');
+var session = require('express-session');
+var flash = require('express-flash');
 
 module.exports = function (app) {
 	app.use(logger('dev'));
@@ -16,4 +18,10 @@ module.exports = function (app) {
  	  		return method
   		}
 	}));
+	app.use(session({
+		secret: 'blahblah',
+		resave: 'false',
+		saveUninitialized: true
+	}));
+	app.use(flash());
 };
