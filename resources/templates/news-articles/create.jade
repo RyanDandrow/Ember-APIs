@@ -1,10 +1,10 @@
 extends /layouts/admin
 
 block content
-	form.col-lg-12(action="/news-articles" method="POST")
+	form.col-lg-12(action=urlHelper.store() method="POST")
 		include _form
 		
 		
 		.btn-group
-			a.bt.btn-default(href="/news-articles") Back
+			a.bt.btn-default(href=urlHelper.index()) Back
 			button.btn.btn-default(type="submit") Submit Button

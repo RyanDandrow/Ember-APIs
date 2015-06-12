@@ -2,20 +2,9 @@ extends /layouts/admin
 
 block content
 	form.col-lg-12(action="/news-articles/#{newsArticle.id}" method="POST")
+		input(type="hidden" name="_method" value="put")
 		include _form
 		
 		.btn-group
 			a.bt.btn-default(href="/news-articles/#{newsArticle.id}") Back
 			button.btn.btn-default(type="submit") Submit Button
-	p 
-		strong Id
-		| -	#{newsArticle.id}
-	p 
-		strong Title
-		| -	#{newsArticle.title}
-	p 
-		strong Short
-		| -	#{newsArticle.short}
-	p 
-		strong Publish Date
-		| -	#{newsArticle.publishDateFormatted}

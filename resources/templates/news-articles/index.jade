@@ -1,7 +1,7 @@
 extends /layouts/admin
 
 block content
-	a.btn.btn-primary.pull-right(href="/news-articles/new")
+	a.btn.btn-primary.pull-right(href=urlHelper.create())
 		i.fa.fa-plus
 			| New News Article
 	.responsive-table
@@ -17,11 +17,13 @@ block content
 				each newsArticle in newsArticles
 					tr
 						td 
-							a(href='/news-articles/#{newsArticle.id}')
+							a(href=urlHelper.show(newsArticle.id))
 								| #{newsArticle.title}
 						td #{newsArticle.title}
 						td #{newsArticle.short}
 						td #{newsArticle.publishDateFormatted}
 						td
-							a(href='/news-articles/#{newsArticle.id}/edit')
+							a(href=urlHelper.edit(newsArticle.id))
 								i.fa.fa-edit
+							a(href=urlHelper.destroy(newsArticle.id) data-method="DELETE")
+								i.fa.fa-times
