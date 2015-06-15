@@ -50,7 +50,8 @@ router.post('/', function (req, res) {
 		}, function (err) {
 			req.flash('errors', err.errors);
 			req.flash('danger', 'There was an error saving this News Article');
-			res.redirect(req.header('Referer') || '/');
+
+			res.withInput().redirectBack();
 		});
 });
 
@@ -87,7 +88,8 @@ router.put('/:id', function (req, res) {
 		}, function (err) {
 			req.flash('errors', err.errors);
 			req.flash('danger', 'There was an error saving this News Article');
-			res.redirect(req.header('Referer') || '/');
+
+			res.withInput().redirectBack();
 		});
 });
 

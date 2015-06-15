@@ -1,18 +1,20 @@
+include /mixins/form-helpers
+
 .form-group(class=errors.title && "has-error")
 	label.control-label(for="title") Title
-	input#title.form-control(name='title' value=newsArticle.title)
+	+inputField('title', newsArticle.title)
 	if errors.title
 		p.help-block The title field is required.
 
 .form-group(class=errors.body && "has-error")
 	label.control-label(for="body") Body
 	textarea#body.form-control(name='body')
-		| #{newsArticle.body}
+		= oldInput('body', newsArticle.body)
 	if errors.body
 		p.help-block The body field is required.
 
 .form-group(class=errors.publishDate && "has-error")
 	label.control-label(for="publish-date") Publish Date
-	input#publish-date.form-control(name='publishDate' type="date" value=newsArticle.publishDateForm)
+	+inputField('publishDate', newsArticle.publishDateForm)(type="date" id="publish-date")
 	if errors.publishDate
 		p.help-block The publish date must be a valid date.

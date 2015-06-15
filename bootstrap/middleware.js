@@ -5,6 +5,7 @@ var override = require('method-override');
 var session = require('express-session');
 var flash = require('express-flash');
 var flashError = require('../middleware/flash-error');
+var redirectHelpers = require('../middleware/redirect-helpers');
 
 module.exports = function (app) {
 	app.use(logger('dev'));
@@ -26,4 +27,5 @@ module.exports = function (app) {
 	}));
 	app.use(flash());
 	app.use(flashError);
+	app.use(redirectHelpers);
 };
