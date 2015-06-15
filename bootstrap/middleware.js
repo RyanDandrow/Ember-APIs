@@ -25,5 +25,5 @@ module.exports = function (app) {
 		saveUninitialized: true
 	}));
 	app.use(flash());
-	app.use(flashError());
+	app.use(flashError);
 };

@@ -46,7 +46,7 @@ router.post('/', function (req, res) {
 	NewsArticle.create(req.body)
 		.then(function(newsArticle) {
 			req.flash('success', '"' + newsArticle.title + '" has been created');			
-			res.redirect('/news-articles');
+			res.redirect(urlHelper.index());
 		}, function (err) {
 			req.flash('errors', err.errors);
 			req.flash('danger', 'There was an error saving this News Article');
