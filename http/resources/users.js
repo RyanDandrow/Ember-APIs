@@ -15,7 +15,7 @@ var prepareData = function(title, data) {
 
 var invalidResponse = function (req, res) {
 	return function (err) {
-		req.flash('danger', 'No news article exists with that id "' + req.params.id + '"');
+		req.flash('danger', 'No User exists with that id "' + req.params.id + '"');
 		res.redirect(urlHelper.index());
 	};
 };
@@ -34,7 +34,7 @@ router.get('/', function (req, res) {
 
 /* GET form to create news article. */
 router.get('/new', function (req, res) {
-	var data = prepareData('News Article - New', {
+	var data = prepareData('User - New', {
 		user: new User()
 	});
 
@@ -49,7 +49,7 @@ router.post('/', function (req, res) {
 			res.redirect(urlHelper.index());
 		}, function (err) {
 			req.flash('errors', err.errors);
-			req.flash('danger', 'There was an error saving this News Article');
+			req.flash('danger', 'There was an error saving this User');
 
 			res.withInput().redirectBack();
 		});
@@ -59,7 +59,7 @@ router.post('/', function (req, res) {
 router.get('/:id', function (req, res) {
 	User.findById(req.params.id).exec()
 		.then(function(user) {
-			var data = prepareData('News Articles - ' + user.email, {
+			var data = prepareData('Email -  ' + user.email, {
 				user: user
 			});
 
@@ -81,16 +81,22 @@ router.get('/:id/edit', function (req, res) {
 
 /* PUT save updates to a news article. */
 router.put('/:id', function (req, res) {
-	User.findByIdAndUpdate(req.params.id, req.body).exec()
+	User.findById(req.params.id).exec()
 		.then(function(user) {
-			req.flash('success', '"' + user.email + '" has been updated');
-			res.redirect(urlHelper.index());
-		}, function (err) {
-			req.flash('errors', err.errors);
-			req.flash('danger', 'There was an error saving this News Article');
+			user.set(req.body);
+			user.save(function (err, user) {
+				if (err) {
+					req.flash('errors', err.errors);
+					req.flash('danger', 'There was an error saving this User');
 
-			res.withInput().redirectBack();
-		});
+					res.withInput().redirectBack();
+					return;
+				}
+
+				req.flash('success', '"' + user.email + '" has been updated');
+				res.redirect(urlHelper.index());
+			});
+		}, invalidResponse (req, err));
 });
 
 /* GET edit form for a news article. */

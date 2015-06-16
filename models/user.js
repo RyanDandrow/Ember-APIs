@@ -8,11 +8,13 @@ var UserSchema = mongoose.Schema({
 });
 
 UserSchema.path('password').set(function (value) {
+	if (!value) {
+		return this.password;
+	}
+
 	var salt = bcrypt.genSaltSync();
 
-	var encrypted = bcrypt.hashSync(value, salt);
-
-	return encrypted;
+	return bcrypt.hashSync(value, salt);
 });
 
 module.exports = mongoose.model('User', UserSchema);
