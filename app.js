@@ -8,6 +8,7 @@ require('./bootstrap/session')(app);
 require('./bootstrap/views')(app);
 require('./bootstrap/mongo');
 require('./models');
+require('./transformers');
 
 var routes = require('./http/routes');
 app.use('/', routes);

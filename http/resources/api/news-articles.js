@@ -2,6 +2,8 @@ var express = require('express');
 var router = express.Router();
 var mongoose = require('mongoose'),
 	NewsArticle = mongoose.model('NewsArticle');
+var mystique = require('mystique'),
+	NewsArticleTransformer = mystique.getTransformer('NewsArticle');
 
 var baseUrl = '/api/news-articles',
 	urlHelper = require('./../../helpers/url')(baseUrl);
@@ -24,14 +26,14 @@ var invalidResponse = function (req, res) {
 router.get('/', function (req, res) {
 	NewsArticle.find().exec()
 		.then(function(newsArticles) {
-			res.json({'news-articles': newsArticles});
+			res.json(NewsArticleTransformer.collection(newsArticles));
 		});
 });
 /* GET a detailed view of a news article. */
 router.get('/:id', function (req, res) {
 	NewsArticle.findById(req.params.id).exec()
 		.then(function(newsArticle) {
-			res.json({'news-article': newsArticle});
+			res.json(NewsArticleTransformer.item(newsArticle));
 		}, invalidResponse(req, res));
 });
 

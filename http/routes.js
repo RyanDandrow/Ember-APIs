@@ -6,6 +6,7 @@ var express = require('express'),
 	authFilter = require('./filters/auth'),
 
 	apiNewsArticleResource = require('./resources/api/news-articles');
+	apiUserResource = require('./resources/api/users');
 
 	adminHomeResource = require('./resources/admin/home'),
 	adminUserResource = require('./resources/admin/users'),
@@ -18,6 +19,7 @@ adminRouter.use('/users', adminUserResource);
 adminRouter.use('/news-articles', adminNewsArticleResource);
 
 apiRouter.use('/news-articles', apiNewsArticleResource);
+apiRouter.use('/users', apiUserResource);
 
 router.use('/admin', adminRouter);
 router.use('/api', apiRouter);
