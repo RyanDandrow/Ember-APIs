@@ -4,7 +4,7 @@ var mongoose = require('mongoose'),
 	User = mongoose.model('User');
 
 var baseUrl = '/admin/users',
-	urlHelper = require('./../helpers/url')(baseUrl);
+	urlHelper = require('./../../helpers/url')(baseUrl);
 
 var prepareData = function(title, data) {
 	data.title = title;
