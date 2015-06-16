@@ -1,10 +1,10 @@
 extends /layouts/admin
 
 block content
-	form.col-lg-12(action=urlHelper.update(newsArticle.id) method="POST")
+	form.col-lg-12(action=urlHelper.update(user.id) method="POST")
 		input(type="hidden" name="_method" value="put")
 		include _form
 		
 		.btn-group
-			a.btn.btn-default(href=urlHelper.update(newsArticle.id)) Back
+			a.btn.btn-default(href=urlHelper.update(user.id)) Back
 			button.btn.btn-default(type="submit") Submit

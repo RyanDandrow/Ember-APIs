@@ -1,0 +1,23 @@
+extends /layouts/admin
+
+block content
+	a.btn.btn-primary.pull-right(href=urlHelper.create())
+		i.fa.fa-plus
+			| New User
+	.responsive-table
+		table.table.table-bordered.table-hover.table-striped
+			thead
+				tr
+					th Email
+					th
+			tbody
+				each user in users
+					tr
+						td 
+							a(href=urlHelper.show(user.id))
+								| #{user.email}
+						td
+							a(href=urlHelper.edit(user.id))
+								i.fa.fa-edit
+							a(href=urlHelper.destroy(user.id) data-method="DELETE")
+								i.fa.fa-times

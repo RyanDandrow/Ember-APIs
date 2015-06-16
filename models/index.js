@@ -1,3 +1,4 @@
 module.exports = {
-	NewsArticle: require('./news-article')
+	NewsArticle: require('./news-article'),
+	User: require('./user')
 };

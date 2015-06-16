@@ -8,18 +8,16 @@ block content
 		table.table.table-bordered.table-hover.table-striped
 			thead
 				tr
-					th Id
 					th Title
 					th Short
 					th Publish Date
-					th
+					th Edit
 			tbody
 				each newsArticle in newsArticles
 					tr
 						td 
 							a(href=urlHelper.show(newsArticle.id))
 								| #{newsArticle.title}
-						td #{newsArticle.title}
 						td #{newsArticle.short}
 						td #{newsArticle.publishDateFormatted}
 						td

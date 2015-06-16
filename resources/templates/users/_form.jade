@@ -1,0 +1,13 @@
+include /mixins/form-helpers
+
+.form-group(class=errors.email && "has-error")
+	label.control-label(for="email") Email
+	+inputField('email', user.email)
+	if errors.email
+		p.help-block The email field is required.
+
+.form-group(class=errors.password && "has-error")
+	label.control-label(for="password") Password
+	input#password.form-control(type="password", name="password")
+	if errors.password
+		p.help-block The password field is required.
