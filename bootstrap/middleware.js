@@ -7,6 +7,7 @@ var flash = require('express-flash');
 var flashError = require('../middleware/flash-error');
 var redirectHelpers = require('../middleware/redirect-helpers');
 var oldInput = require('../middleware/old-input');
+var auth = require('../middleware/auth');
 
 module.exports = function (app) {
 	app.use(logger('dev'));
@@ -30,4 +31,5 @@ module.exports = function (app) {
 	app.use(flashError);
 	app.use(redirectHelpers);
 	app.use(oldInput);
+	app.use(auth);
 };

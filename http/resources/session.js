@@ -23,7 +23,11 @@ router.post('/login', function (req, res) {
 		.then(function (user) {
 			if (user) {
 				user.checkPassword(password, function () {
-					res.send('loggin in');
+					req.login(user, function () {
+						req.flash('success', 'You have logged in successfuly.');
+
+						res.redirect('/admin');
+					});
 				}, function (err) {
 					loginError(req, res)
 				});
@@ -33,6 +37,14 @@ router.post('/login', function (req, res) {
 		}, function (err) {
 			loginError(req, res)
 		});
+});
+
+router.all('/logout', function (req, res) {
+	req.logout();
+
+	req.flash('success', 'You have successfully logged out');
+
+	res.redirect('/login');
 });
 
 module.exports = router;
