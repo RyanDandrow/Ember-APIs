@@ -4,6 +4,7 @@ var favicon = require('serve-favicon');
 
 var app = express();
 require('./bootstrap/middleware')(app);
+require('./bootstrap/session')(app);
 require('./bootstrap/views')(app);
 require('./bootstrap/mongo');
 require('./models');
