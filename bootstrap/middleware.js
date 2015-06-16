@@ -6,6 +6,7 @@ var session = require('express-session');
 var flash = require('express-flash');
 var flashError = require('../middleware/flash-error');
 var redirectHelpers = require('../middleware/redirect-helpers');
+var oldInput = require('../middleware/old-input');
 
 module.exports = function (app) {
 	app.use(logger('dev'));
@@ -28,4 +29,5 @@ module.exports = function (app) {
 	app.use(flash());
 	app.use(flashError);
 	app.use(redirectHelpers);
+	app.use(oldInput);
 };

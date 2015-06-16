@@ -17,4 +17,14 @@ UserSchema.path('password').set(function (value) {
 	return bcrypt.hashSync(value, salt);
 });
 
+UserSchema.methods.checkPassword = function (value, success, failure) {
+	bcrypt.compare(value, this.password, function (err, result) {
+		if (result) {
+			success();
+		} else {
+			failure(err);
+		}
+	});
+}
+
 module.exports = mongoose.model('User', UserSchema);

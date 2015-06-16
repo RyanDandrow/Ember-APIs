@@ -3,7 +3,7 @@ var router = express.Router();
 var mongoose = require('mongoose'),
 	NewsArticle = mongoose.model('NewsArticle');
 
-var baseUrl = '/news-articles',
+var baseUrl = '/admin/news-articles',
 	urlHelper = require('./../helpers/url')(baseUrl);
 
 var prepareData = function(title, data) {

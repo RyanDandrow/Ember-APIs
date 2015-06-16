@@ -1,6 +1,2 @@
-- var oldInput = function (key, fallback) {
-- return messages._old_input && messages._old_input[0][key] || fallback;	
-- }
-
 mixin inputField(name, value)
 	input.form-control(id=name name=name value=oldInput(name, value))&attributes(attributes)
